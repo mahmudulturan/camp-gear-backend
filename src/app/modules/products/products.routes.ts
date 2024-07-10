@@ -22,4 +22,16 @@ router
      */
     .post('/', ProductsControllers.createProduct);
 
+    
+router
+/**
+ * @route GET /products
+ * @group Products - Operations about managing products
+ * @produces application/json
+ * @returns {Array.<IProduct>} 200 - An array of product objects as per the defined schema.
+ * @returns {object} 404 - An object containing an error message if no products are available.
+ * @returns {object} 401 - An object containing an error message if authentication fails.
+ */
+.get('/', ProductsControllers.getAllProducts);
+
 export default router;
