@@ -10,3 +10,9 @@ const getAllProductsFromDB = async () => {
     const products = await Product.find();
     return products;
 }
+
+const getAProductFromDB = async (productId: string) => {
+    const product = await Product.findById(productId);
+    return product;
+}
+
