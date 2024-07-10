@@ -4,17 +4,18 @@ import { IInventory, IPrice, IProduct, IRating } from "./products.interfaces";
 // price schema
 const priceSchema = new mongoose.Schema<IPrice>({
     amount: { type: Number, required: true },
+    discount: { type: Number, default: 0 },
 }, { _id: false })
 
 // rating schema
 const ratingSchema = new mongoose.Schema<IRating>({
-    rate: { type: Number, required: true },
-    count: { type: Number, required: true },
+    rate: { type: Number, default: 0 },
+    count: { type: Number, default: 0 },
 }, { _id: false })
 
 // inventory schema
 const inventorySchema = new mongoose.Schema<IInventory>({
-    inStock: { type: Boolean, required: true },
+    inStock: { type: Boolean, default: true },
     quantity: { type: Number, required: true },
 }, { _id: false })
 
