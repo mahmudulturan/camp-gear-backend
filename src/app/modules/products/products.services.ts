@@ -26,7 +26,7 @@ const deleteProductFromDB = async (productId: string) => {
     return deletedProduct;
 }
 
-export const ProductsService = {
+export const ProductsServices = {
     createProductIntoDB,
     getAllProductsFromDB,
     getAProductFromDB,
