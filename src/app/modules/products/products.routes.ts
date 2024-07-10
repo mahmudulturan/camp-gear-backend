@@ -49,5 +49,26 @@ router
 .get('/:id', ProductsControllers.getSingleProduct);
 
 
+router
+/**
+ * @route PUT /products/:id
+ * @group Products - Operations about managing products
+ * @param {string} id.path.required - The ID of the product to update.
+ * @param {Object} requestBody - Request body required for updating a product
+ * @param {string} [requestBody.title] - The updated title of the product. Optional.
+ * @param {string} [requestBody.description] - The updated description of the product. Optional.
+ * @param {IPrice} [requestBody.price] - The updated price of the product. Example: { amount: 160 }. Optional.
+ * @param {string} [requestBody.category] - The updated category of the product. Optional.
+ * @param {Array.<string>} [requestBody.image] - Updated URLs of images representing the product. Optional.
+ * @param {IRating} [requestBody.rating] - Updated rating details of the product. Example: { rate: 4.7, count: 130 }. Optional.
+ * @param {IInventory} [requestBody.inventory] - Updated inventory details of the product. Example: { inStock: false, quantity: 5 }. Optional.
+ * @produces application/json
+ * @returns {object} 200 - An object containing the updated product information and a success message.
+ * @returns {object} 400 - An object containing an error message if the request body is invalid.
+ * @returns {object} 404 - An object containing an error message if the product is not found.
+ * @returns {object} 401 - An object containing an error message if authentication fails.
+ */
+.put('/:id', ProductsControllers.updateSingleProduct);
+
 
 export default router;
