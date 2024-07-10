@@ -30,3 +30,10 @@ const updateSingleProduct = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// controller for deleting a single product 
+const deleteSingleProduct = catchAsync(async (req: Request, res: Response) => {
+    const product = await ProductsService.deleteProductFromDB(req.params.id);
+    sendResponse(res, { success: true, status: 200, message: "Product deleted successfully", data: product });
+});
+
+
