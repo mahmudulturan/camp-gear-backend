@@ -34,4 +34,20 @@ router
  */
 .get('/', ProductsControllers.getAllProducts);
 
+
+
+router
+/**
+ * @route GET /products/:id
+ * @group Products - Operations about managing products
+ * @param {string} id.path.required - The ID of the product to retrieve.
+ * @produces application/json
+ * @returns {object} 200 - An object containing the requested product information as per the defined schema.
+ * @returns {object} 404 - An object containing an error message if the product is not found.
+ * @returns {object} 401 - An object containing an error message if authentication fails.
+ */
+.get('/:id', ProductsControllers.getSingleProduct);
+
+
+
 export default router;
