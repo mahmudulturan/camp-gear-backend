@@ -22,3 +22,11 @@ const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, { success: true, status: 200, message: "Product fetched successfully", data: product });
 });
 
+
+// controller for updating a single product
+const updateSingleProduct = catchAsync(async (req: Request, res: Response) => {
+    const product = await ProductsService.updateProductInDB(req.params.id, req.body);
+    sendResponse(res, { success: true, status: 200, message: "Product updated successfully", data: product });
+});
+
+
