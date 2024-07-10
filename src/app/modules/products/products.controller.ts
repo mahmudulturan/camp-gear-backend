@@ -37,3 +37,11 @@ const deleteSingleProduct = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+
+export const ProductsController = {
+    createProduct,
+    getAllProducts,
+    getSingleProduct,
+    updateSingleProduct,
+    deleteSingleProduct
+}
