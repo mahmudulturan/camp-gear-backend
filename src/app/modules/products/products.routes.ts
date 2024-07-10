@@ -71,4 +71,18 @@ router
 .put('/:id', ProductsControllers.updateSingleProduct);
 
 
+router
+/**
+ * @route DELETE /products/:id
+ * @group Products - Operations about managing products
+ * @param {string} id.path.required - The ID of the product to delete.
+ * @produces application/json
+ * @returns {object} 204 - No content response indicating successful deletion.
+ * @returns {object} 404 - An object containing an error message if the product is not found.
+ * @returns {object} 401 - An object containing an error message if authentication fails.
+ */
+.delete('/:id', ProductsControllers.deleteSingleProduct);
+
+
+
 export default router;
