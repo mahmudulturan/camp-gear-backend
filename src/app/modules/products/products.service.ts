@@ -20,3 +20,8 @@ const updateProductInDB = async (productId: string, product: IProduct) => {
     const updatedProduct = await Product.findByIdAndUpdate(productId, product, { new: true });
     return updatedProduct;
 }
+
+const deleteProductFromDB = async (productId: string) => {
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+    return deletedProduct;
+}
