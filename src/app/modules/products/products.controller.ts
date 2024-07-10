@@ -15,3 +15,10 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, { success: true, status: 200, message: "All products fetched successfully", data: products });
 });
 
+
+// controller for getting a single product
+const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
+    const product = await ProductsService.getAProductFromDB(req.params.id);
+    sendResponse(res, { success: true, status: 200, message: "Product fetched successfully", data: product });
+});
+
