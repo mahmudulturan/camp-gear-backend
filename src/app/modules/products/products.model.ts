@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { IInventory, IPrice, IProduct, IRating } from "./products.interface";
+import { IInventory, IPrice, IProduct, IRating } from "./products.interfaces";
 
 // price schema
 const priceSchema = new mongoose.Schema<IPrice>({

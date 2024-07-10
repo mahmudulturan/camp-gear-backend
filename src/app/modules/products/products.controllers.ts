@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProductsService } from "./products.service";
+import { ProductsService } from "./products.services";
 import sendResponse from "../../utils/sendResponse";
 import catchAsync from "../../utils/catchAsync";
 
