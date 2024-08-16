@@ -18,7 +18,7 @@ export interface IProduct {
     description: string;
     price: IPrice;
     category: string;
-    image: string[];
+    image: string;
     rating: IRating;
     inventory: IInventory;
 }

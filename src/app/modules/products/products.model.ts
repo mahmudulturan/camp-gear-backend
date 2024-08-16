@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema<IProduct>({
     description: { type: String, required: true },
     price: { type: priceSchema, required: true },
     category: { type: String, required: true },
-    image: { type: [String], required: true },
+    image: { type: String, required: true },
     rating: { type: ratingSchema, required: true },
     inventory: { type: inventorySchema, required: true },
 })
