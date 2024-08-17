@@ -17,7 +17,10 @@ export interface IUser {
 export interface IBooking {
     user: IUser;
     deliveryAddress: IAddress;
-    product: Types.ObjectId;
+    product: {
+        product: Types.ObjectId;
+        quantity: number;
+    }[];
     quantity: number;
     total: number;
     status: string;

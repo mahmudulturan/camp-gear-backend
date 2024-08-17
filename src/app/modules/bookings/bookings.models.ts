@@ -33,6 +33,21 @@ const adddressSchema = new mongoose.Schema<IAddress>({
         type: String,
         required: true
     }
+}, { _id: false })
+
+const productSchema = new mongoose.Schema({
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 1
+    }
+}, {
+    _id: false
 })
 
 const bookingSchema = new mongoose.Schema<IBooking>({
@@ -45,8 +60,7 @@ const bookingSchema = new mongoose.Schema<IBooking>({
         required: true
     },
     product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
+        type: [productSchema],
         required: true
     },
     quantity: {
