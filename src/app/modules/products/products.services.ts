@@ -7,7 +7,7 @@ const createProductIntoDB = async (product: IProduct) => {
     return newProduct;
 }
 
-const getAllProductsFromDB = async (queryKey: Record<string, any>) => {
+const getAllProductsFromDB = async (queryKey: Record<string, any>): Promise<{ products: IProduct[], productsCount: number }> => {
     let query: FilterQuery<any> = {};
     let search;
     let limit = 9;
@@ -42,6 +42,11 @@ const getAllProductsFromDB = async (queryKey: Record<string, any>) => {
     return { products, productsCount };
 }
 
+const getCategoriesFromDB = async () => {
+    const categories = await Product.distinct('category');
+    return categories;
+}
+
 const getAProductFromDB = async (productId: string) => {
     const product = await Product.findById(productId);
     return product;
@@ -62,5 +67,6 @@ export const ProductsServices = {
     getAllProductsFromDB,
     getAProductFromDB,
     updateProductInDB,
-    deleteProductFromDB
+    deleteProductFromDB,
+    getCategoriesFromDB
 };

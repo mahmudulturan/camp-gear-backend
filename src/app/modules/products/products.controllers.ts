@@ -15,6 +15,11 @@ const getAllProducts = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, { success: true, status: 200, message: "All products fetched successfully", data: products });
 });
 
+// controller for getting all product categories
+const getCategories = catchAsync(async (req: Request, res: Response) => {
+    const categories = await ProductsServices.getCategoriesFromDB();
+    sendResponse(res, { success: true, status: 200, message: "All product categories fetched successfully", data: categories });
+});
 
 // controller for getting a single product
 const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
@@ -43,5 +48,6 @@ export const ProductsControllers = {
     getAllProducts,
     getSingleProduct,
     updateSingleProduct,
-    deleteSingleProduct
+    deleteSingleProduct,
+    getCategories
 }

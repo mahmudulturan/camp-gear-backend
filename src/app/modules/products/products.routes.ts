@@ -35,6 +35,16 @@ router
     .get('/', ProductsControllers.getAllProducts);
 
 
+router
+    /**
+     * @route GET /products/categories
+     * @group Products - Operations about managing products
+     *  @produces application/json
+     * @returns {Array.<string>} 200 - An array of product categories as per the defined schema.
+     * @returns {object} 401 - An object containing an error message if authentication fails.
+     * @returns {object} 404 - An object containing an error message if no products are available.
+     */
+    .get('/categories', ProductsControllers.getCategories);
 
 router
     /**
@@ -47,6 +57,7 @@ router
      * @returns {object} 401 - An object containing an error message if authentication fails.
      */
     .get('/:id', ProductsControllers.getSingleProduct);
+
 
 
 router
