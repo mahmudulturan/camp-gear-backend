@@ -11,7 +11,21 @@ const getAllProductsFromDB = async (queryKey: Record<string, any>): Promise<{ pr
     let query: FilterQuery<any> = {};
     let search;
     let limit = 9;
-    let page = 1
+    let page = 1;
+    let sort: Record<string, any> = { createdAt: "desc" };
+
+    if (queryKey.filter) {
+        query.category = queryKey.filter;
+    }
+
+    if (queryKey.sort) {
+        const sortKey = queryKey.sort;
+        if (sortKey === 'price') {
+            sort['price.amount'] = queryKey.order === 'asc' ? 1 : -1;
+        } else {
+            sort[sortKey] = queryKey.order;
+        }
+    }
 
     if (queryKey.searchKey) {
         search = queryKey.searchKey;
@@ -37,7 +51,7 @@ const getAllProductsFromDB = async (queryKey: Record<string, any>): Promise<{ pr
 
     const skipValue = (page - 1) * limit;
 
-    const products = await Product.find(query).limit(limit).skip(skipValue).sort({ createdAt: -1 });
+    const products = await Product.find(query).limit(limit).skip(skipValue).sort(sort);
     const productsCount = await Product.countDocuments(query);
     return { products, productsCount };
 }
