@@ -1,11 +1,23 @@
+import Product from "../products/products.model";
 import { IBooking } from "./bookings.interfaces";
 import Booking from "./bookings.models";
 
 // service for create boooking
 const createBookingIntoDB = async (booking: IBooking) => {
+    await Promise.all(booking.product.map(async (productInfo) => {
+
+        const product = await Product.findById(productInfo.product);
+        if (!product) throw new Error("Product not found");
+
+        product.inventory.quantity -= productInfo.quantity;
+        await product.save();
+
+        return product;
+    }));
+    
     const newBooking = await Booking.create(booking);
     return newBooking;
-}
+};
 
 // service for get all bookings
 const getAllBookingsFromDB = async () => {
