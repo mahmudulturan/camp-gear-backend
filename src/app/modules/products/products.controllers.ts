@@ -11,7 +11,7 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
 
 // controller for getting all products
 const getAllProducts = catchAsync(async (req: Request, res: Response) => {
-    const products = await ProductsServices.getAllProductsFromDB();
+    const products = await ProductsServices.getAllProductsFromDB(req.query);
     sendResponse(res, { success: true, status: 200, message: "All products fetched successfully", data: products });
 });
 

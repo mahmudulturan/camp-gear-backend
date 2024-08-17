@@ -1,3 +1,4 @@
+import { FilterQuery } from "mongoose";
 import { IProduct } from "./products.interfaces";
 import Product from "./products.model";
 
@@ -6,9 +7,39 @@ const createProductIntoDB = async (product: IProduct) => {
     return newProduct;
 }
 
-const getAllProductsFromDB = async () => {
-    const products = await Product.find();
-    return products;
+const getAllProductsFromDB = async (queryKey: Record<string, any>) => {
+    let query: FilterQuery<any> = {};
+    let search;
+    let limit = 9;
+    let page = 1
+
+    if (queryKey.searchKey) {
+        search = queryKey.searchKey;
+    }
+
+    if (queryKey.limit) {
+        limit = queryKey.limit;
+    }
+    if (queryKey.page) {
+        page = queryKey.page;
+    }
+
+    if (queryKey.category) {
+        query.category = queryKey.category;
+    }
+
+    if (search) {
+        query.$or = [
+            { title: { $regex: search, $options: 'i' } },
+            { 'description': { $regex: search, $options: 'i' } }
+        ];
+    }
+
+    const skipValue = (page - 1) * limit;
+
+    const products = await Product.find(query).limit(limit).skip(skipValue).sort({ createdAt: -1 });
+    const productsCount = await Product.countDocuments(query);
+    return { products, productsCount };
 }
 
 const getAProductFromDB = async (productId: string) => {
