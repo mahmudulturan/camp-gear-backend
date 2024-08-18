@@ -10,6 +10,7 @@ const createBookingIntoDB = async (booking: IBooking) => {
         if (!product) throw new Error("Product not found");
 
         product.inventory.quantity -= productInfo.quantity;
+        product.inventory.inStock = product.inventory.quantity > 0 ? true : false;
         await product.save();
 
         return product;
